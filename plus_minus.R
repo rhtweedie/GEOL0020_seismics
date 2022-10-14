@@ -2,20 +2,26 @@ library(ggplot2)
 library(tibble)
 library(dplyr)
 
+# define variables
+data_to_load = "data/ns_data.csv"
+tAB = 0.06087
+tBA = 0.07547
+
 # load data
-ns_data = read.csv("data/ns_data.csv")
-ns_data = tibble(ns_data)
-ew_data = read.csv("data/ew_data.csv")
-ew_data = tibble(ew_data)
+data = read.csv(data_to_load)
+data = tibble(data)
 
-ggplot(ns_data) + 
-  geom_point(aes(x = Offset, y = TA), size = 2, color = 'red') +
-  geom_point(aes(x = Offset, y = TB), size = 2, color = 'blue')
+# find mean travel time between points A and B
+mean_tAB = mean(c(tAB, tBA))
 
-ns_data %>% mutate(
-  ta_minus_tb = TA - TB
+ggplot(data) + 
+  geom_point(aes(x = offset, y = tA), size = 2, color = 'red') +
+  geom_point(aes(x = offset, y = tB), size = 2, color = 'blue')
+
+# find tA - tB
+data = data %>% mutate(
+  tA_minus_tB = tA - tB
 )
 
-ggplot(ns_data) +
-  geom_point(aes(x = Offset, y = ta_minus_tb))
-
+ggplot(data) +
+  geom_point(aes(x = offset, y = ))
