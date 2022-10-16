@@ -4,17 +4,17 @@ library(dplyr)
 
 
 # define variables
-data_to_load = "data/ns_data.csv"
-tAB = 0.06087
-tBA = 0.07547
-V1 = 1000 #calculated by hand from direct wave data
+data_to_load <- "data/ns_data.csv"
+tAB <-0.06087
+tBA <- 0.07547
+V1 <- 1000 #calculated by hand from direct wave data
 
 # load data
-data = read.csv(data_to_load)
-data = tibble(data)
+data <- read.csv(data_to_load)
+data <- tibble(data)
 
 # find mean travel time between points A and B
-mean_tAB = mean(c(tAB, tBA))
+mean_tAB <- mean(c(tAB, tBA))
 
 # plot offset vs travel times
 ggplot(data) + 
@@ -22,7 +22,7 @@ ggplot(data) +
   geom_point(aes(x = offset, y = tB), size = 2, color = 'blue')
 
 # find tA-tB
-minus_data = data %>% mutate(
+minus_data <- data %>% mutate(
   tA_minus_tB = tA - tB
 )
 
@@ -35,8 +35,13 @@ ggplot(minus_data, aes(x = offset, y = tA_minus_tB)) +
   ggtitle("tA - tB against Offset")
 
 # find and extract gradient of line of best fit
-model = lm(minus_data$tA_minus_tB ~ minus_data$offset)
-gradient = model$coefficients[2]
+model <- lm(minus_data$tA_minus_tB ~ minus_data$offset)
+gradient <- model$coefficients[2]
 
 # calculate V2
-V2 = 2/gradient
+V2 <- 2/gradient
+
+# calculate depths at each geophone
+plus_minus_data <- minus_data %>% mutate(
+  depth = (V1*V2) / (2 * (V2^2 - V1^2)^(1/2)) * mean_tAB
+)
