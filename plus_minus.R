@@ -29,17 +29,21 @@ minus_data <- data %>% mutate(
 # plot offset vs tA-tB (minus)
 ggplot(minus_data, aes(x = offset, y = tA_minus_tB)) +
   geom_point() +
-  geom_smooth(aes(x = offset, y = tA_minus_tB), method = lm, se = FALSE) +
+  geom_smooth(data = minus_data[1:9,], aes(x = offset, y = tA_minus_tB), method = lm, se = FALSE) +
+  geom_smooth(data = minus_data[9:38,], aes(x = offset, y = tA_minus_tB), method = lm, se = FALSE) +
   xlab("Offset (m)") +
   ylab("tA - tB") +
   ggtitle("tA - tB against Offset")
 
 # find and extract gradient of line of best fit
-model <- lm(minus_data$tA_minus_tB ~ minus_data$offset)
-gradient <- model$coefficients[2]
+model_1 <- lm(minus_data[1:9,]$tA_minus_tB ~ minus_data[1:9,]$offset)
+gradient_1 <- model_1$coefficients[2]
+model_2 <- lm(minus_data[9:38,]$tA_minus_tB ~ minus_data[9:38,]$offset)
+gradient_2 <- model_2$coefficients[2]
+
 
 # calculate V2
-V2 <- 2/gradient
+V2 <- 2/gradient_1
 
 # calculate depths at each geophone
 plus_minus_data <- minus_data %>% mutate(
