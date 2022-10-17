@@ -1,4 +1,4 @@
-,Offset,Shot 0 (-11m),Shot 1 (0m),Shot 2 (11m),Shot 3 (22m),Shot 4 (33m),Shot 5 (44m)
+geophone_location,offset,shot_0,shot_1,shot_2,shot_3,shot_4,shot_5
 1,0,,,,,,
 1,1,0.02658,0.00183,0.02515,0.0436,0.05206,0.00965
 1,2,0.02878,0.00295,0.0224,0.04116,0.05158,0.00834
