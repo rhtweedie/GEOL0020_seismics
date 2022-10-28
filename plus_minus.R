@@ -4,12 +4,12 @@ library(dplyr)
 
 
 # define variables
-data_to_load <- "data/ns_data.csv"
 tAB <-0.06087
 tBA <- 0.07547
-V1 <- 1000 #calculated by hand from direct wave data
+V1 <- 1000 #calculated from direct wave
 
-# load data
+# read data
+data_to_load <- "data/ns_data.csv"
 data <- read.csv(data_to_load)
 data <- tibble(data)
 
@@ -41,7 +41,6 @@ gradient_1 <- model_1$coefficients[2]
 model_2 <- lm(minus_data[9:38,]$tA_minus_tB ~ minus_data[9:38,]$offset)
 gradient_2 <- model_2$coefficients[2]
 
-
 # calculate V2
 V2 <- 2/gradient_1
 
@@ -49,3 +48,4 @@ V2 <- 2/gradient_1
 plus_minus_data <- minus_data %>% mutate(
   depth = (V1*V2) / (2 * (V2^2 - V1^2)^(1/2)) * mean_tAB
 )
+
