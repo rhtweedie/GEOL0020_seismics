@@ -31,7 +31,7 @@ ggplot(data) +
   geom_point(aes(x = offset, y = shot_5), color = cbPalette[6]) +
     geom_smooth(data = data[1:46,], aes(x = offset, y = shot_5), color = cbPalette[6], method = lm, se = FALSE) +
     geom_smooth(data = data[46:48,], aes(x = offset, y = shot_5), color = cbPalette[6], method = lm, se = FALSE) +
-  xlab('Offset, m') +
-  ylab('Wave arrival time, s') +
-  ggtitle('Arrival times for each shot and geophone location')
+  xlab('Offset (m)') +
+  ylab('Wave Arrival Time (s)') +
+  ggtitle('Arrival Times for each Shot and Geophone Location, EW')
 
