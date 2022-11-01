@@ -6,7 +6,7 @@ library(dplyr)
 # define variables
 tAB <-0.06087
 tBA <- 0.07547
-V1 <- 310 #calculated from direct wave
+V1 <- 310 #calculated from direct wave - find_v1_ns.R
 
 # read data
 data_to_load <- "data/ns_data.csv"
