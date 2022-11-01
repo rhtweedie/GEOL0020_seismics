@@ -61,10 +61,10 @@ for (i in 10:38) {
 
 ggplot(plus_minus_data, aes(x = offset, y = depth)) +
   geom_line() +
-  ylim(3, 0) +
+  ylim(3, -0.1) +
   geom_hline(yintercept = 0) +
-  geom_label(label = 'SURFACE', x = 49, y = -0.1) +
-  ggtitle('Cross-Section of Depth of First Layer Boundary across Site of Suspected Barrow') +
+  geom_label(label = 'SURFACE', x = 49, y = 0.1) +
+  ggtitle('Cross-Section of Depth of First Layer Boundary across Site of Suspected Barrow, NS') +
   xlab('Offset (m)') +
   ylab('Depth (m)') +
   annotate("rect", xmin = 17, xmax = 27, ymin = 0, ymax = 3, alpha = 0.2) +
