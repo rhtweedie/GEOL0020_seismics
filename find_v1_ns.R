@@ -39,5 +39,6 @@ gradient_6 <- abs(model_dir_6$coefficients[2])
 
 gradients = c(gradient_1, gradient_21, gradient_22, gradient_31, gradient_32, gradient_41, gradient_42, gradient_51, gradient_52, gradient_6)
 mean_grad = mean(gradients)
+std_grad = sd(gradients)
 v1 = 1/mean_grad
 plot(gradients, ylim = c(0, 0.004))
