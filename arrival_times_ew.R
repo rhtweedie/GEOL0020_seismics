@@ -35,3 +35,26 @@ ggplot(data) +
   ylab('Wave Arrival Time (s)') +
   ggtitle('Arrival Times for each Shot and Geophone Location, EW')
 
+
+# calculate gradients and find mean and st. dev.
+model_1 <- lm(data[1:48,]$shot_0 ~ data[1:48,]$offset)
+gradient_1 <- abs(model_1$coefficients[2])
+model_2 <- lm(data[13:48,]$shot_1 ~ data[13:48,]$offset)
+gradient_2 <- abs(model_2$coefficients[2])
+model_3 <- lm(data[26:48,]$shot_2 ~ data[26:48,]$offset)
+gradient_3 <- abs(model_3$coefficients[2])
+model_4 <- lm(data[1:20,]$shot_3 ~ data[1:20,]$offset)
+gradient_4 <- abs(model_4$coefficients[2])
+model_5 <- lm(data[28:48,]$shot_3 ~ data[28:48,]$offset)
+gradient_5 <- abs(model_5$coefficients[2])
+model_6 <- lm(data[1:28,]$shot_4 ~ data[1:28,]$offset)
+gradient_6 <- abs(model_6$coefficients[2])
+model_7 <- lm(data[39:48,]$shot_4 ~ data[39:48,]$offset)
+gradient_7 <- abs(model_7$coefficients[2])
+model_8 <- lm(data[1:46,]$shot_5 ~ data[1:46,]$offset)
+gradient_8 <- abs(model_8$coefficients[2])
+
+gradients <- c(gradient_1, gradient_2, gradient_3, gradient_4, gradient_5, gradient_6, gradient_7, gradient_8)
+mean_grad <- mean(gradients)
+std_grad <- sd(gradients)
+  
